@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
  import { ReactiveDict } from 'meteor/reactive-dict';
  
@@ -34,10 +35,7 @@ Template.body.events({
     const text = target.text.value;
  
     // Insert a task into the collection
-    Tasks.insert({
-      text,
-      createdAt: new Date(), // current time
-    });
+   Meteor.call('tasks.insert', text);
  
     // Clear form
     target.text.value = '';
